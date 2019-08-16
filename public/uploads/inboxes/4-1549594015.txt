@@ -1,7 +1,0 @@
-pma link:
-wget http://185.109.170.9/pma.zip
-
-
-failedcalls:105306-105205=101
-success_calls:1714374-1562694=151742
-retail_successcalls:535340-482756=52603
