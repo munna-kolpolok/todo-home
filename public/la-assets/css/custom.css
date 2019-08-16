@@ -1,0 +1,64 @@
+.rab-logo{
+border:3px solid #fff;
+border-radius: 50%;
+}
+
+.login-page, .register-page {
+    background: #222d32 !important;
+}
+
+
+.login-page .bg-black, .login-page .btn-primary {
+    background-color: #222d32 !important;
+    border-color: #000;
+}
+.login-page .btn-primary .active, .login-page .btn-primary:hover{
+    background-color: #000 !important;
+    border-color: #000;
+}
+
+.login-box-body, .register-box-body {
+    border-radius:2px;
+}
+
+.profile2 .name{
+
+	margin-top: 40px !important;
+}
+
+button.navbar-toggle {
+
+	color: #000 !important;
+}
+
+.skin-white .sidebar-menu > li.active > a {
+    color: #fff;
+}
+
+.navbar-nav > .tasks-menu > .dropdown-menu {
+    min-width: 99px !important;
+    width: 50px !important;  
+    }
+
+@media (max-width: 767px){
+
+.main-header .navbar .dropdown-menu li a {
+    color: #000 !important;
+}
+}
+
+@media (max-width: 991px){
+
+.navbar-nav > .tasks-menu > .dropdown-menu {
+    right: 29% !important;
+    }
+}
+
+/*.form-group.required .control-label:after { 
+   content:"*";
+   color:red;
+}*/
+.la-required {
+    color: #FB0000;
+    font-size: 16px;
+}

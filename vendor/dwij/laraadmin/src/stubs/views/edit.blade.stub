@@ -1,0 +1,59 @@
+@extends("la.layouts.app")
+
+@section("contentheader_title")
+	<a href="{{ url(config('laraadmin.adminRoute') . '/__db_table_name__') }}">@lang('messages.__singular_cap_var__')</a> :
+@endsection
+@section("contentheader_description", $__singular_var__->$view_col)
+@section("section", trans("messages.__module_name_2__"))
+@section("section_url", url(config('laraadmin.adminRoute') . '/__db_table_name__'))
+@section("sub_section", trans("messages.Edit"))
+
+@section("htmlheader_title", "__module_name_2__ Edit : ".$__singular_var__->$view_col)
+
+@section("main-content")
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<div class="box box-success">
+	<div class="box-header">
+		
+	</div>
+	<div class="box-body">
+		<div class="row">
+			
+				{!! Form::model($__singular_var__, ['route' => [config('laraadmin.adminRoute') . '.__db_table_name__.update', $__singular_var__->id ], 'method'=>'PUT', 'id' => '__singular_var__-edit-form']) !!}
+					{{--@ la_form($module) --}}
+					
+					
+					__input_fields__
+					
+                    <div class="col-md-12">
+					<div class="form-group">
+						{!! Form::submit( Lang::get('messages.Update'), ['class'=>'btn btn-success']) !!} <a class="btn btn-default" href="{{ url(config('laraadmin.adminRoute') . '/__db_table_name__') }}">@lang('messages.Cancel')</a>
+					</div>
+					</div>
+				{!! Form::close() !!}
+			
+		</div>
+	</div>
+</div>
+
+@endsection
+
+@push('scripts')
+<script>
+$(function () {
+	$("#__singular_var__-edit-form").validate({
+		
+	});
+});
+</script>
+@endpush
