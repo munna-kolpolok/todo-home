@@ -15,7 +15,7 @@
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <style>
-          .connected-sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+          .connected-sortable { list-style-type: none; margin: 0; padding: 0; width: 100%;min-height: 100px;}
           .connected-sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em;background-color: #f6f6f6;cursor: move}
           </style>
           <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
