@@ -15,14 +15,8 @@
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <style>
-          #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-          #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em;  }
-
-          #sortable-in-work { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-          #sortable-in-work li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em;  }
-
-          #sortable-done { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-          #sortable-done li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em;  }
+          .connected-sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+          .connected-sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em;background-color: #f6f6f6;cursor: move}
           </style>
           <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
           <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -111,33 +105,47 @@
             
               <div class="row">
                 <div class="col-md-4">
+                  <h3 align="center">Todo List</h3>
                   <ul class="connected-sortable droppable-area1"  id="1">
                     @foreach($works as $work)
                         @if($work->status==1)
-                        <li class="draggable-item"  data-id="{{ $work->id }}">{{ $work->description or null }}</li>
+                        <li class="draggable-item"  data-id="{{ $work->id }}">{{ $work->description or null }}
+                        <br>
+                        <span><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                        </li>
                         @endif
                     @endforeach
                   </ul>
                 </div>
                 
                 <div class="col-md-4">
+                    <h3 align="center">In Work</h3>
                   <ul class="connected-sortable droppable-area2" id="2">
                     @foreach($works as $work)
                         @if($work->status==2)
-                        <li class="draggable-item"  data-id="{{ $work->id }}">{{ $work->description or null }}</li>
+                        <li class="draggable-item"  data-id="{{ $work->id }}">{{ $work->description or null }}
+                        <br>
+                        <span><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                        </li>
                         @endif
                     @endforeach
                   </ul>
                 </div>
 
                 <div class="col-md-4">
+                    <h3 align="center">Done</h3>
                   <ul class="connected-sortable droppable-area3" id="3">
                     @foreach($works as $work)
                         @if($work->status==3)
-                        <li class="draggable-item"  data-id="{{ $work->id }}">{{ $work->description or null }}</li>
+                        <li class="draggable-item"  data-id="{{ $work->id }}">{{ $work->description or null }}
+                        <br>
+                        <span><i class="fa fa-user fa-lg" aria-hidden="true"></i></span>
+                        </li>
                         @endif
                     @endforeach
                   </ul>
+                  <br>
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Add Todo List</button>
                 </div>
 
               </div>
@@ -188,7 +196,7 @@
         function init() {
           $( ".droppable-area1, .droppable-area2,.droppable-area3" ).sortable({
               connectWith: ".connected-sortable",
-              //stack: '.connected-sortable ul',
+              stack: '.connected-sortable ul',
               receive: function(event, ui) {
                 var work_id=ui.item.attr('data-id');
                 var status=this.id;
