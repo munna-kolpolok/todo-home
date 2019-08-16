@@ -97,6 +97,45 @@
 
 
           </script>
+          <!-- Bootstrap 3.3.2 JS -->
+        <script src="{{ asset('la-assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+
+        <script type="text/javascript">
+            $( init );
+
+            function init() {
+              $( ".droppable-area1, .droppable-area2,.droppable-area3" ).sortable({
+                  connectWith: ".connected-sortable",
+                  stack: '.connected-sortable ul',
+                  receive: function(event, ui) {
+                    var work_id=ui.item.attr('data-id');
+                    var status=this.id;
+                    
+                    var order = [];
+                    $('.draggable-item').each(function (index, element) {
+                        order.push({
+                            id: $(this).attr('data-id'),
+                            position: index + 1
+
+                        });
+                    });
+                    // POST to server using $.post or $.ajax
+                    $.ajax({
+                        data: {
+                            order: order,
+                            work_id: work_id,
+                            status:status,
+                            _token: '{{csrf_token()}}'
+                        },
+                        type: 'POST',
+                        url: 'todo-order'
+                    });
+
+                  }
+                }).disableSelection();
+            }
+        </script>
         
     </head>
     <body>
@@ -185,45 +224,6 @@
     </div>
 
     </body>
-    <!-- Bootstrap 3.3.2 JS -->
-    <script src="{{ asset('la-assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
-
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-
-    <script type="text/javascript">
-        $( init );
-
-        function init() {
-          $( ".droppable-area1, .droppable-area2,.droppable-area3" ).sortable({
-              connectWith: ".connected-sortable",
-              stack: '.connected-sortable ul',
-              receive: function(event, ui) {
-                var work_id=ui.item.attr('data-id');
-                var status=this.id;
-                
-                var order = [];
-                $('.draggable-item').each(function (index, element) {
-                    order.push({
-                        id: $(this).attr('data-id'),
-                        position: index + 1
-
-                    });
-                });
-                // POST to server using $.post or $.ajax
-                $.ajax({
-                    data: {
-                        order: order,
-                        work_id: work_id,
-                        status:status,
-                        _token: '{{csrf_token()}}'
-                    },
-                    type: 'POST',
-                    url: 'todo-order'
-                });
-
-              }
-            }).disableSelection();
-        }
-    </script>
+    
 
 </html>
